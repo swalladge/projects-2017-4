@@ -150,8 +150,21 @@ def logout(response):
 @loginRequired
 def profile(response,name):
     user = get_current_user(response)
+    if name is None:
+        profiler = user
+    else:
+        try:
+            profiler = User.get_by_id(name)
+        except:
+            profiler = None
+
+    if not profiler:
+        html = render_template('404errorpage.html', {'user': user})
+        response.write(html)
+        return
+
     posts = User.get_posts(user.user_id)
-    html = render_template('profile.html', {'user': user, 'posts': posts})
+    html = render_template('profile.html', {'user': user, 'posts': posts, 'profiler': profiler})
     response.write(html)
 
 @loginRequired

@@ -5,8 +5,8 @@
 <a class="post-title"> {{post.title}} </a>
 <!-- {{profile_name}} -->
 <!-- {{description}} -->
-<a class ="profile-positioning">
-
+<div class ="profile-positioning" >
+  <a href="/profile/{{ poster.user_id }}">
   <figure class="profile-image">
       {% if poster.profile_picture == 'default.png'%}
       <img src="/static/profile.png" alt="Profile Image">
@@ -15,9 +15,10 @@
       <img src = user.profile_picture>
       {% end if %}
       <figcaption class="username" > {{ poster.username }}</figcaption>
+  </a>
   </figure>
 
-</a>
+</div>
 
 
 
@@ -50,7 +51,7 @@
 	<div class="poster-details">
 		<img class="profile-pic" src="/static/profile.png" alt="{{ comment.author.username }}">
 		<br>
-		<span class="posted-by">Posted by <span class="poster">{{ comment.author.username }}</span></span>
+		<span class="posted-by">Posted by <a href="/profile/{{ poster.user_id }}"><span class="poster">{{ comment.author.username }}</span></a></span>
 		<br>
 		<!--<time datetime="2011-12-24" pubdate>
 			2011-12-24

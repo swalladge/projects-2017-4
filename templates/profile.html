@@ -5,10 +5,10 @@
 <center>
 <div class="newsfeed-image">
 <center>
-<h3>{{ user.username }}</h3>
+<h3>{{ profiler.username }}</h3>
 <img src="/static/profile.png" style="width:150px">
 <p>
-Student from NCSS who something or rather.
+{{ profiler.description }}
 </p>
 
 <div class="history">
@@ -16,7 +16,7 @@ Student from NCSS who something or rather.
   {% for post in posts %}
   <a href="/post/{{ post.id }}">{{ post.title }}</a>
   <br />
-  <img src="{{ post.image }}" style="width: 64px">
+  <img src="/{{ post.image }}" style="width: 64px">
   <br>
   {% end for %}
 </div>
