@@ -1,3 +1,4 @@
+import hashlib
 from tornado.ncss import Server
 from re_template_renderer import render_template
 #uncomment later when DB is fixed
@@ -172,7 +173,7 @@ def submit_handler(response):
         html = render_template('new_post.html', {'user': user, 'invalidPost': "Please fill in all fields." })
         response.write(html)
     else:
-        pictureName = 'static/postimages/'+title+'.'+image[1].split('/')[1]
+        pictureName = 'static/postimages/' + hashlib.md5((image[2])).hexdigest() + '.' + image[1].split('/')[1]
         with open(pictureName,'wb') as pictureFile:
             pictureFile.write(image[2])
         createPost = Post.create(user.user_id,title,description,pictureName,location)
