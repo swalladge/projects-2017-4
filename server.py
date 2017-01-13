@@ -79,13 +79,6 @@ def signup_handler(response):
             html = render_template('signup.html', {'user': user, 'errorMessage': str(e) })
             response.write(html)
 
-def profile(response,name):
-    user = get_current_user(response)
-    print(user)
-    print(user.profile_picture)
-    html = render_template('profile.html', {'user': user})
-    response.write(html)
-
 def get_current_user(response):
     email = response.get_secure_cookie("userCookie")    #change back to User(), later when DB is fixed
     if email is not None:
@@ -163,7 +156,7 @@ def profile(response,name):
         response.write(html)
         return
 
-    posts = User.get_posts(user.user_id)
+    posts = User.get_posts(profiler.user_id)
     html = render_template('profile.html', {'user': user, 'posts': posts, 'profiler': profiler})
     response.write(html)
 
