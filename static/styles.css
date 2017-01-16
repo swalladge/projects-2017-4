@@ -59,7 +59,6 @@ form {
     padding: 10px;
     text-decoration: none;
     margin: auto;
-    cursor: pointer;
     width: 80%;
     height: auto;
     text-align: center;
@@ -398,4 +397,10 @@ footer ul li{
 
 .poster {
     font-weight: bold;
+}
+
+.plain-text {
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
 }
