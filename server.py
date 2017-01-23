@@ -30,7 +30,6 @@ def notLoginRequired(fn):
 def home(response):
     user = get_current_user(response)
     posts = Post.get_by_recent(10)
-    print(posts)
     html = render_template('main.html', {'user': user, 'posts': posts})
     response.write(html)
 
@@ -52,7 +51,7 @@ def signup_handler(response):
     password = response.get_field('password', '')
     confpassword = response.get_field('confpassword', '')
     usr_description = response.get_field('usr_describe', '')
-    
+
     #when done with mvp keep entered fields
     if (not name) or (not email) or (not password) or (not confpassword):
         user = get_current_user(response)
@@ -101,7 +100,6 @@ def view_post(response, post_id):
         html = render_template('content.html', {'user': user,'post':post,'poster':poster, 'comments': comments})
         response.write(html)
     except Exception as e:
-        print(e)
         user = get_current_user(response)
         html = render_template('404errorpage.html', {'user': user})
         response.write(html)
